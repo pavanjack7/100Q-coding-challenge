@@ -1,0 +1,24 @@
+                                          CODING QUESTIONS
+TO UNDERSTAND BASIC CODING APPROACH AND DATA STRUCTURE CONCEPTS.
+
+1.Diamond pattern -> Try to solve few pattern questions
+2.Given an array of numbers. Print the numbers without duplication.
+3.Sort the array odd numbers in ascending and even numbers in descending.
+4. https://www.geeksforgeeks.org/find-number-currency-notes-sum-upto-given-amount/
+5. https://www.geeksforgeeks.org/program-to-convert-hexadecimal-number-to-binary/
+6. https://www.geeksforgeeks.org/convert-binary-number-hexadecimal-number/
+7. Sort the array elements in descending order according to their frequency of occurrence
+8. Print true if second string is a substring of first string, else print false.
+9.Find the least prime number that can be added with first array element that makes them divisible by second array elements at respective index
+10.Prime number – print n prime numbers
+11.Prime factor – sort the array based on the minimum factor they have
+12.TWISTED PRIME NUMBER
+13.Find the prime number in the given range. (test cases: interval is negative in range)
+14.Find the extra element and its index
+15.Move Zeroes to End of Array
+16.Find Element Appears Once
+17. https://leetcode.com/problems/single-number-ii/description/
+18.Transform String
+19.Missing Number
+20.STRING MANIPULATIONS
+21.MATRIX SORTING
