@@ -1,0 +1,1223 @@
+
+1.Diamond pattern -> Try to solve few pattern questions
+
+
+// C++ program to print diamond shape
+// with 2n rows 
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// Prints diamond pattern with 2n rows 
+void printDiamond(int n) 
+{ 
+    int space = n - 1; 
+ 
+    // run loop (parent loop) 
+    // till number of rows 
+    for (int i = 0; i < n; i++) 
+    { 
+        // loop for initially space, 
+        // before star printing 
+        for (int j = 0;j < space; j++) 
+            cout << " "; 
+ 
+        // Print i+1 stars 
+        for (int j = 0; j <= i; j++) 
+            cout << "* "; 
+ 
+        cout << endl; 
+        space--; 
+    } 
+ 
+    // Repeat again in reverse order 
+    space = 0; 
+ 
+    // run loop (parent loop) 
+    // till number of rows 
+    for (int i = n; i > 0; i--) 
+    { 
+        // loop for initially space, 
+        // before star printing 
+        for (int j = 0; j < space; j++) 
+            cout << " "; 
+ 
+        // Print i stars 
+        for (int j = 0;j < i;j++) 
+            cout << "* ";
+ 
+        cout << endl;
+        space++; 
+    } 
+} 
+ 
+// Driver code 
+int main() 
+{ 
+    printDiamond(5); 
+    return 0; 
+} 
+ 2.Given an array of numbers. Print the numbers without duplication.
+
+#include <iostream>
+#include <vector>
+#include <set>
+#include <algorithm>
+ 
+std::vector<int> common_digits(const std::vector<int>& nums) {
+    std::set<int> digit_set;
+    for (int num : nums) {
+        while (num > 0) {
+            digit_set.insert(num % 10);
+            num /= 10;
+        }
+    }
+    return std::vector<int>(digit_set.begin(), digit_set.end());
+}
+ 
+int main() {
+    std::vector<int> nums1 = {131, 11, 48};
+    std::vector<int> result1 = common_digits(nums1);
+    for (int digit : result1) {
+        std::cout << digit << " ";
+    }
+    std::cout << std::endl;  // Output: 1 3 4 8
+ 
+    std::vector<int> nums2 = {111, 222, 333, 4444, 666};
+    std::vector<int> result2 = common_digits(nums2);
+    for (int digit : result2) {
+        std::cout << digit << " ";
+    }
+    std::cout << std::endl;  // Output: 1 2 3 4 6
+ 
+    return 0;
+}
+3.Sort the array odd numbers in ascending and even numbers in descending. 
+
+          #include <iostream>
+#include <vector>
+#include <algorithm>
+ 
+void sortArray(std::vector<int>& arr) {
+    std::vector<int> odd, even;
+ 
+    // Separate odd and even numbers
+    for (int num : arr) {
+        if (num % 2 == 0) {
+            even.push_back(num);
+        } else {
+            odd.push_back(num);
+        }
+    }
+ 
+    // Sort odd numbers in descending order
+    std::sort(odd.begin(), odd.end(), std::greater<int>());
+    // Sort even numbers in ascending order
+    std::sort(even.begin(), even.end());
+ 
+    // Combine the sorted odd and even numbers
+    int index = 0;
+    for (int num : odd) {
+        arr[index++] = num;
+    }
+    for (int num : even) {
+        arr[index++] = num;
+    }
+}
+ 
+int main() {
+    std::vector<int> arr1 = {1, 2, 3, 5, 4, 7, 10};
+    sortArray(arr1);
+    for (int num : arr1) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;  // Output: 7 5 3 1 2 4 10
+ 
+    std::vector<int> arr2 = {0, 4, 5, 3, 7, 2, 1};
+    sortArray(arr2);
+    for (int num : arr2) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;  // Output: 7 5 3 1 0 2 4
+ 
+    return 0;
+}
+
+4.https://www.geeksforgeeks.org/find-number-currency-notes-sum-upto-given-amount/
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// function to count and 
+// print currency notes
+void countCurrency(int amount)
+{
+int notes[9] = { 2000, 500, 200, 100,
+50, 20, 10, 5, 1 };
+int noteCounter[9] = { 0 };
+
+// count notes using Greedy approach
+for (int i = 0; i < 9; i++) {
+if (amount >= notes[i]) {
+noteCounter[i] = amount / notes[i];
+amount = amount % notes[i];
+}
+}
+
+// Print notes
+cout << "Currency Count ->" << endl;
+for (int i = 0; i < 9; i++) {
+if (noteCounter[i] != 0) {
+cout << notes[i] << " : "
+<< noteCounter[i] << endl;
+}
+}
+}
+ 
+// Driver function
+int main()
+{
+int amount = 868;
+countCurrency(amount);
+return 0;
+}
+
+5.https://www.geeksforgeeks.org/program-to-convert-hexadecimal-number-to-binary/
+
+
+// C++ program to convert
+// Hexadecimal number to Binary
+ 
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// function to convert
+// Hexadecimal to Binary Number
+void HexToBin(string hexdec)
+{
+//Skips "0x" if present at beggining of Hex string
+size_t i = (hexdec[1] == 'x' || hexdec[1] == 'X')? 2 : 0;
+ 
+while (hexdec[i]) {
+ 
+switch (hexdec[i]) {
+case '0':
+cout << "0000";
+break;
+case '1':
+cout << "0001";
+break;
+case '2':
+cout << "0010";
+break;
+case '3':
+cout << "0011";
+break;
+case '4':
+cout << "0100";
+break;
+case '5':
+cout << "0101";
+break;
+case '6':
+cout << "0110";
+break;
+case '7':
+cout << "0111";
+break;
+case '8':
+cout << "1000";
+break;
+case '9':
+cout << "1001";
+break;
+case 'A':
+case 'a':
+cout << "1010";
+break;
+case 'B':
+case 'b':
+cout << "1011";
+break;
+case 'C':
+case 'c':
+cout << "1100";
+break;
+case 'D':
+case 'd':
+cout << "1101";
+break;
+case 'E':
+case 'e':
+cout << "1110";
+break;
+case 'F':
+case 'f':
+cout << "1111";
+break;
+case '.':
+cout << ".";
+break;
+default:
+cout << "\nInvalid hexadecimal digit "
+<< hexdec[i];
+}
+i++;
+}
+}
+ 
+// driver code
+int main()
+{
+ 
+// Get the Hexadecimal number
+char hexdec[100] = "1AC5";
+ 
+// Convert HexaDecimal to Binary
+cout << "\nEquivalent Binary value is : ";
+HexToBin(hexdec);
+ 
+return 0;
+}
+
+6.https://www.geeksforgeeks.org/convert-binary-number-hexadecimal-number/
+
+// C++ implementation to 
+// convert a binary number to hexadecimal number
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to create map between binary
+// number and its equivalent hexadecimal
+void createMap(unordered_map<string, char> *um)
+{
+    (*um)["0000"] = '0';
+    (*um)["0001"] = '1';
+    (*um)["0010"] = '2';
+    (*um)["0011"] = '3';
+    (*um)["0100"] = '4';
+    (*um)["0101"] = '5';
+    (*um)["0110"] = '6';
+    (*um)["0111"] = '7';
+    (*um)["1000"] = '8';
+    (*um)["1001"] = '9';
+    (*um)["1010"] = 'A';
+    (*um)["1011"] = 'B';
+    (*um)["1100"] = 'C';
+    (*um)["1101"] = 'D';
+    (*um)["1110"] = 'E';
+    (*um)["1111"] = 'F';
+}
+
+// function to find hexadecimal 
+// equivalent of binary
+string convertBinToHex(string bin)
+{
+    int l = bin.size();
+    int t = bin.find_first_of('.');
+    
+    // length of string before '.'
+    int len_left = t != -1 ? t : l;
+    
+    // add min 0's in the beginning to make
+    // left substring length divisible by 4 
+    for (int i = 1; i <= (4 - len_left % 4) % 4; i++)
+        bin = '0' + bin;
+    
+    // if decimal point exists    
+    if (t != -1)    
+    {
+        // length of string after '.'
+        int len_right = l - len_left - 1;
+        
+        // add min 0's in the end to make right
+        // substring length divisible by 4 
+        for (int i = 1; i <= (4 - len_right % 4) % 4; i++)
+            bin = bin + '0';
+    }
+    
+    // create map between binary and its
+    // equivalent hex code
+    unordered_map<string, char> bin_hex_map;
+    createMap(&bin_hex_map);
+    
+    int i = 0;
+    string hex = "";
+    
+    while (1)
+    {
+        // one by one extract from left, substring
+        // of size 4 and add its hex code
+        hex += bin_hex_map[bin.substr(i, 4)];
+        i += 4;
+        if (i == bin.size())
+            break;
+            
+        // if '.' is encountered add it
+        // to result
+        if (bin.at(i) == '.')    
+        {
+            hex += '.';
+            i++;
+        }
+    }
+    
+    // required hexadecimal number
+    return hex;    
+}
+
+// Driver program to test above
+int main()
+{
+    string bin = "1111001010010100001.010110110011011";
+    cout << "Hexadecimal number = "
+         << convertBinToHex(bin);
+    return 0;     
+}  
+
+
+This is for non decimal point questions try to look at this also by using same question link. think important
+
+// C++ implementation to 
+// convert a binary number to hexadecimal number
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to create map between binary
+// number and its equivalent hexadecimal
+void createMap(unordered_map<string, char> *um)
+{
+    (*um)["0000"] = '0';
+    (*um)["0001"] = '1';
+    (*um)["0010"] = '2';
+    (*um)["0011"] = '3';
+    (*um)["0100"] = '4';
+    (*um)["0101"] = '5';
+    (*um)["0110"] = '6';
+    (*um)["0111"] = '7';
+    (*um)["1000"] = '8';
+    (*um)["1001"] = '9';
+    (*um)["1010"] = 'A';
+    (*um)["1011"] = 'B';
+    (*um)["1100"] = 'C';
+    (*um)["1101"] = 'D';
+    (*um)["1110"] = 'E';
+    (*um)["1111"] = 'F';
+}
+
+// function to find hexadecimal 
+// equivalent of binary
+string convertBinToHex(string bin)
+{
+    int l = bin.size();
+    int t = bin.find_first_of('.');
+    
+    // length of string before '.'
+    int len_left = t != -1 ? t : l;
+    
+    // add min 0's in the beginning to make
+    // left substring length divisible by 4 
+    for (int i = 1; i <= (4 - len_left % 4) % 4; i++)
+        bin = '0' + bin;
+    
+    // if decimal point exists    
+    if (t != -1)    
+    {
+        // length of string after '.'
+        int len_right = l - len_left - 1;
+        
+        // add min 0's in the end to make right
+        // substring length divisible by 4 
+        for (int i = 1; i <= (4 - len_right % 4) % 4; i++)
+            bin = bin + '0';
+    }
+    
+    // create map between binary and its
+    // equivalent hex code
+    unordered_map<string, char> bin_hex_map;
+    createMap(&bin_hex_map);
+    
+    int i = 0;
+    string hex = "";
+    
+    while (1)
+    {
+        // one by one extract from left, substring
+        // of size 4 and add its hex code
+        hex += bin_hex_map[bin.substr(i, 4)];
+        i += 4;
+        if (i == bin.size())
+            break;
+            
+        // if '.' is encountered add it
+        // to result
+        if (bin.at(i) == '.')    
+        {
+            hex += '.';
+            i++;
+        }
+    }
+    
+    // required hexadecimal number
+    return hex;    
+}
+
+// Driver program to test above
+int main()
+{
+    string bin = "1111001010010100001.010110110011011";
+    cout << "Hexadecimal number = "
+         << convertBinToHex(bin);
+    return 0;     
+} 
+
+7.Sort the array elements in descending order according to their frequency of occurrence. (https://www.geeksforgeeks.org/problems/sorting-elements-of-an-array-by-frequency/0.)
+
+ #include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+
+using namespace std;
+
+// Comparator function to sort by frequency and then by value
+bool compare(pair<int, int>& a, pair<int, int>& b) {
+    if (a.second == b.second)
+        return a.first < b.first;
+    return a.second > b.second;
+}
+
+void sortByFrequency(vector<int>& arr) {
+    unordered_map<int, int> freqMap;
+    for (int num : arr) {
+        freqMap[num]++;
+    }
+
+    vector<pair<int, int>> freqVec(freqMap.begin(), freqMap.end());
+    sort(freqVec.begin(), freqVec.end(), compare);
+
+    arr.clear();
+    for (auto& p : freqVec) {
+        for (int i = 0; i < p.second; ++i) {
+            arr.push_back(p.first);
+        }
+    }
+}
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int N;
+        cin >> N;
+        vector<int> arr(N);
+        for (int i = 0; i < N; ++i) {
+            cin >> arr[i];
+        }
+
+        sortByFrequency(arr);
+
+        for (int num : arr) {
+            cout << num << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+8.Print true if second string is a substring of first string, else print false.( https://www.geeksforgeeks.org/problems/check-for-subsequence/0.)
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std; 
+
+// } Driver Code Ends
+
+class Solution{
+    public:
+    bool isSubSequence(string A, string B) 
+    {
+        
+        
+         int i = 0, j = 0;
+        while (i < A.length() && j < B.length()) {
+            if (A[i] == B[j]) {
+                i++;
+            }
+            j++;
+        }
+        return i == A.length();
+
+    }
+};
+
+//{ Driver Code Starts.
+int main() 
+{ 
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        string A,B;
+        cin>>A;
+        cin>>B;  
+        Solution ob;
+        if(ob.isSubSequence(A,B))
+            cout<<"1"<<endl;
+        else
+            cout<<"0"<<endl;
+    }
+    return 0; 
+} 
+
+// } Driver Code Ends
+
+9.Find the least prime number that can be added with first array element that makes them divisible by second array elements at respective index.
+
+Input : [ 20, 7 ]
+    [ 11, 5 ]
+Output : [ 1, 3 ]
+
+Explanation : 
+(20 + ?) % 11 
+( 7 + ?) % 5
+
+
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+// Function to check if a number is prime
+bool isPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i <= std::sqrt(n); ++i) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+// Function to find the least prime number for each element
+std::vector<int> findLeastPrime(const std::vector<int>& arr1, const std::vector<int>& arr2) {
+    std::vector<int> result;
+    for (size_t i = 0; i < arr1.size(); ++i) {
+        int num1 = arr1[i];
+        int num2 = arr2[i];
+        int prime = 1;
+        while (true) {
+            if (isPrime(prime) && (num1 + prime) % num2 == 0) {
+                result.push_back(prime);
+                break;
+            }
+            ++prime;
+        }
+    }
+    return result;
+}
+
+int main() {
+    std::vector<int> arr1 = {20, 7};
+    std::vector<int> arr2 = {11, 5};
+    std::vector<int> result = findLeastPrime(arr1, arr2);
+
+    std::cout << "Output: [ ";
+    for (int prime : result) {
+        std::cout << prime << " ";
+    }
+    std::cout << "]" << std::endl;
+
+    return 0;
+}
+
+10. Prime number – print n prime numbers( https://www.geeksforgeeks.org/program-to-print-first-n-prime-numbers/.)
+
+// C++ program to display Prime numbers till N
+#include <bits/stdc++.h>
+using namespace std;
+
+// function to check if a given number is prime
+bool isPrime(int n)
+{
+    // since 0 and 1 is not prime return false.
+    if (n == 1 || n == 0)
+        return false;
+
+    // Run a loop from 2 to n-1
+    for (int i = 2; i < n; i++) {
+        // if the number is divisible by i, then n is not a
+        // prime number.
+        if (n % i == 0)
+            return false;
+    }
+    // otherwise, n is prime number.
+    return true;
+}
+
+// Driver code
+int main()
+{
+    int N = 100;
+
+    // check for every number from 1 to N
+    for (int i = 1; i <= N; i++) {
+        // check if current number is prime
+        if (isPrime(i))
+            cout << i << " ";
+    }
+
+    return 0;
+}
+
+11.Prime factor – sort the array based on the minimum factor they have
+
+To sort an array based on the minimum prime factor of each element, you can follow these steps:
+
+Find the smallest prime factor for each element.
+Sort the array based on these smallest prime factors.
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+// Function to find the smallest prime factor of a number
+int smallestPrimeFactor(int n) {
+    if (n <= 1) return n;
+    if (n % 2 == 0) return 2;
+    for (int i = 3; i <= std::sqrt(n); i += 2) {
+        if (n % i == 0) return i;
+    }
+    return n; // n is prime
+}
+
+// Comparator function to sort based on smallest prime factor
+bool compare(int a, int b) {
+    return smallestPrimeFactor(a) < smallestPrimeFactor(b);
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the number of elements in the array: ";
+    std::cin >> n;
+
+    std::vector<int> arr(n);
+    std::cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; ++i) {
+        std::cin >> arr[i];
+    }
+
+    std::sort(arr.begin(), arr.end(), compare);
+
+    std::cout << "Sorted array based on the smallest prime factor: ";
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
+SIMILAR TYPE OF QUESTION
+
+Input : {5, 11, 10, 20, 9, 16, 23}
+Output : 20 16 10 9 5 11 23
+Number of distinct factors:
+For 20 = 6, 16 = 5, 10 = 4, 9 = 3
+and for 5, 11, 23 = 2 (same number of factors
+therefore sorted in increasing order of index)
+
+Input : {104, 210, 315, 166, 441, 180}
+Output : 180 210 315 441 104 166
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+// Function to count the number of distinct factors of a number
+int countFactors(int n) {
+    int count = 0;
+    for (int i = 1; i <= std::sqrt(n); ++i) {
+        if (n % i == 0) {
+            if (i == n / i) {
+                count += 1; // Perfect square
+            } else {
+                count += 2; // Pair of factors
+            }
+        }
+    }
+    return count;
+}
+
+// Comparator function to sort based on the number of factors
+bool compare(const std::pair<int, int>& a, const std::pair<int, int>& b) {
+    if (a.second == b.second) {
+        return a.first < b.first; // Maintain original order if factors count is the same
+    }
+    return a.second > b.second; // Sort by number of factors in descending order
+}
+
+int main() {
+    std::vector<int> arr = {5, 11, 10, 20, 9, 16, 23};
+    std::vector<std::pair<int, int>> factorCount;
+
+    // Calculate the number of factors for each element
+    for (int i = 0; i < arr.size(); ++i) {
+        factorCount.push_back({i, countFactors(arr[i])});
+    }
+
+    // Sort the array based on the number of factors
+    std::sort(factorCount.begin(), factorCount.end(), compare);
+
+    // Output the sorted array
+    std::cout << "Sorted array based on the number of distinct factors: ";
+    for (const auto& p : factorCount) {
+        std::cout << arr[p.first] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
+12.TWISTED PRIME NUMBER( https://www.geeksforgeeks.org/problems/twisted-prime-number/0.)
+
+// C/C++ program to check if a given number
+// is Twisted Prime or not
+#include <bits/stdc++.h>
+using namespace std;
+
+// Returns reverse of n
+int reverse(int n)
+{
+	int rev = 0, r;
+	while (n > 0) {
+		r = n % 10;
+		rev = rev * 10 + r;
+		n /= 10;
+	}
+	return rev;
+}
+
+// Returns true if n is prime
+bool isPrime(int n)
+{
+	// Corner cases
+	if (n <= 1)
+		return false;
+	if (n <= 3)
+		return true;
+
+	// This is checked so that we can skip
+	// middle five numbers in below loop
+	if (n % 2 == 0 || n % 3 == 0)
+		return false;
+
+	for (int i = 5; i * i <= n; i = i + 6)
+		if (n % i == 0 || n % (i + 2) == 0)
+			return false;
+
+	return true;
+}
+
+// function to check Twisted Prime number
+bool checkTwistedPrime(int n)
+{
+	if (isPrime(n) == false)
+		return false;
+
+	return isPrime(reverse(n));
+}
+
+// Driver Code
+int main(void)
+{
+	// Printing Twisted Prime numbers upto 200
+	cout << "First few Twisted Prime numbers are :- n";
+	for (int i = 2; i <= 200; i++)
+		if (checkTwistedPrime(i))
+			cout << i << " ";
+
+	return 0;
+}
+
+13. Find the prime number in the given range.(test cases: interval is negative in range)( https://www.geeksforgeeks.org/program-to-find-prime-numbers-between-given-interval/.)
+
+// C++ program to find the prime numbers
+// between a given interval
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    // Declare the variables
+    int a, b, i, j, flag;
+
+    // Ask user to enter lower value of interval
+    cout << "Enter lower bound of the interval: ";
+    cin >> a; // Take input
+
+    // Ask user to enter upper value of interval
+    cout << "\nEnter upper bound of the interval: ";
+    cin >> b; // Take input
+
+    // Print display message
+    cout << "\nPrime numbers between "
+         << a << " and " << b << " are: ";
+
+    // Traverse each number in the interval
+    // with the help of for loop
+    for (i = a; i <= b; i++) {
+        // Skip 0 and 1 as they are
+        // neither prime nor composite
+        if (i == 1 || i == 0)
+            continue;
+
+        // flag variable to tell
+        // if i is prime or not
+        flag = 1;
+
+        for (j = 2; j <= i / 2; ++j) {
+            if (i % j == 0) {
+                flag = 0;
+                break;
+            }
+        }
+
+        // flag = 1 means i is prime
+        // and flag = 0 means i is not prime
+        if (flag == 1)
+            cout << i << " ";
+    }
+
+    return 0;
+}
+
+// This code is contributed by Akanksha Rai
+
+14. Find the extra element and its index( https://www.geeksforgeeks.org/problems/index-of-an-extra-element/1.)
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+    int findExtra(int n, int arr1[], int arr2[]) {
+        // add code here.
+        for (int i = 0; i < n - 1; i++) {
+            if (arr1[i] != arr2[i]) {
+                return i;
+            }
+        }
+        return n - 1; // If no difference found, the extra element is the last one
+    }
+};
+
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        int arr1[n], arr2[n - 1];
+        for (int i = 0; i < n; i++) {
+            cin >> arr1[i];
+        }
+        for (int i = 0; i < n - 1; i++) {
+            cin >> arr2[i];
+        }
+        Solution obj;
+        cout << obj.findExtra(n, arr1, arr2) << endl;
+    }
+}
+// } Driver Code Ends
+
+for time complexity within O(log(n)) use below logic
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+  public:
+    int findExtra(int n, int arr1[], int arr2[]) {
+        int left = 0, right = n - 2;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (arr1[mid] == arr2[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+};
+
+15. Move Zeroes to End of Array( https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article.)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+  public:
+    void pushZerosToEnd(vector<int>& arr) {
+        int n = arr.size();
+        int j = 0; // Pointer for the next non-zero element
+        
+        // Traverse the array
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0) {
+                // Swap the elements
+                swap(arr[i], arr[j]);
+                j++;
+            }
+        }
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        vector<int> arr;
+        string input;
+        getline(cin, input);
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+        Solution ob;
+        int n = arr.size();
+        ob.pushZerosToEnd(arr);
+        for (int i = 0; i < n; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
+
+16.Find Element Appears Once( https://leetcode.com/problems/single-element-in-a-sorted-array/description/.)
+
+You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once.
+
+Return the single element that appears only once.
+
+Your solution must run in O(log n) time and O(1) space.
+
+ 
+
+Example 1:
+
+Input: nums = [1,1,2,3,3,4,4,8,8]
+Output: 2
+Example 2:
+
+Input: nums = [3,3,7,7,10,11,11]
+Output: 10
+ 
+
+Constraints:
+
+1 <= nums.length <= 105
+0 <= nums[i] <= 105
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int left = 0, right = nums.size() - 1;
+        
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            
+            // Ensure mid is even
+            if (mid % 2 == 1) mid--;
+            
+            // Check if the single element is in the right half
+            if (nums[mid] == nums[mid + 1]) {
+                left = mid + 2;
+            } else {
+                right = mid;
+            }
+        }
+        
+        return nums[left];
+    }
+};
+
+int main() {
+    Solution sol;
+    vector<int> nums1 = {1, 1, 2, 3, 3, 4, 4, 8, 8};
+    vector<int> nums2 = {3, 3, 7, 7, 10, 11, 11};
+    
+    cout << "Single element in nums1: " << sol.singleNonDuplicate(nums1) << endl; // Output: 2
+    cout << "Single element in nums2: " << sol.singleNonDuplicate(nums2) << endl; // Output: 10
+    
+    return 0;
+}
+
+17.https://leetcode.com/problems/single-number-ii/description/( https://leetcode.com/problems/single-number-ii/description/.)
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        //code here
+        int n=nums.size();
+        unordered_map<int,int>map;
+        for(int i=0;i<n;i++){
+            map[nums[i]]++;
+        }
+        for(auto i:map){
+            if(i.second==1){
+                return i.first;
+            }
+        }
+    return -1;
+    }
+};
+
+18.Transform String( https://leetcode.com/problems/minimum-moves-to-convert-string/description/.)
+
+class Solution {
+public:
+    int minimumMoves(string s) {
+        int n = s.length();
+        int movecount = 0;
+
+        for (int i = 0; i < n; ) {
+            if (s[i] == 'X') {
+                movecount++;
+                i += 3; // Skip the next two characters as they are converted to 'O'
+        }   else {
+            i++;
+        }
+    }
+    return movecount;
+    }
+};
+
+
+
+19.Missing Number( https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_medium=article HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"& HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article" HYPERLINK "https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article"itm_campaign=bottom_sticky_on_article.)
+
+   int missingNumber(int n, vector<int>& arr) {
+
+        // Your code goes here
+        
+        int total=n*(n+1)/2;
+        int currentsum=0;
+        for(int i=0;i<n-1;i++){
+             currentsum+=arr[i];
+        }
+     return total-currentsum;   
+    }
+
+
+20.STRING MANIPULATIONS( https://www.kindsonthegenius.com/cplusplus/c-string-manipulation/#t4)
+
+Concatenation – Combines two string into one. Simply use the + operator. See example below
+String length – Use length() method
+Searching strings – Accessing a character within a string. Use the find() method
+Substrings – Returning part of a string. Use the substr() method.
+Replacing – Replacing part of a string. Use the replace() method
+Insertion – Inserting character(s) into a string. Using the insert() method
+Erase – Removing part of a string. Use the erase() method.
+
+int main () {
+	   string string1 = "Beginner ";
+	   string string2 = "to Expert ";
+	   string string3 = "Tutorials";
+	   string string4 = string1 + string2 + string3;
+	   int  len = string4.length();
+
+
+	   cout << string4 << endl;
+
+	   cout << "Length of string1 is: " << len <<endl;
+
+	   cout <<"Expert is at position " << string2.find("Expert") <<endl;
+
+	   cout << "Part of string 2: " << string2.substr(3,8)<<endl;
+
+	   cout << "Replacing 'Expert':  " << string4.replace(12, 17, "Guru")<<endl;
+
+	   cout << "Insertion:  "<< string4.insert(0, " by Kindson")<<endl;
+
+	   cout << "Erasing:  " << string3.erase(0,3)<<endl;
+
+	   return 0;
+}
+
+OUTPUT:
+
+Beginner to Expert Tutorials
+Length of string1 is: 28
+Expert is at position3
+Part of string 2: Expert 
+Replacing 'Expert':  Beginner to Guru
+Insertion:   by KindsonBeginner to Guru
+Erasing:  orials
+
+21.MATRIX SORTING( https://leetcode.com/problems/sort-the-matrix-diagonally/description/.)
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+vector<vector<int>> diagonalSortDescending(vector<vector<int>>& mat) {
+    int m = mat.size();
+    int n = mat[0].size();
+    map<int, vector<int>> diagonals;
+
+    // Store each diagonal in the map
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            diagonals[i - j].push_back(mat[i][j]);
+        }
+    }
+
+    // Sort each diagonal in descending order
+    for (auto& diag : diagonals) {
+        sort(diag.second.begin(), diag.second.end(), greater<int>());
+    }
+
+    // Place the sorted diagonals back into the matrix
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            mat[i][j] = diagonals[i - j].back();
+            diagonals[i - j].pop_back();
+        }
+    }
+
+    return mat;
+}
+
+int main() {
+    vector<vector<int>> mat = {{3, 3, 1, 1}, {2, 2, 1, 2}, {1, 1, 1, 2}};
+    vector<vector<int>> sortedMat = diagonalSortDescending(mat);
+
+    for (const auto& row : sortedMat) {
+        for (int val : row) {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+22. https://www.geeksforgeeks.org/problems/count-possible-triangles-1587115620/1?
+
